@@ -1,0 +1,25 @@
+@import "../../styles/colors.scss";
+
+.unfilledButton {
+  width: 9rem;
+  height: 2.5rem;
+  text-transform: uppercase;
+  border-radius: 0.3rem;
+  border: 2px solid $primary;
+
+  color: $primary;
+  font-size: 1rem;
+}
+
+.filledButton {
+  width: 8rem;
+  height: 2.5rem;
+  border-radius: 0.3rem;
+  background: $backgroundGradientLight;
+
+  color: $white;
+  font-family: Lato;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}

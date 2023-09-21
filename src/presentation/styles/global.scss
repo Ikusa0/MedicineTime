@@ -1,0 +1,23 @@
+@import "./colors.scss";
+@import "./reset.scss";
+
+* {
+  font-family: "Lato", sans-serif;
+
+  color: $primaryDark;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+button:hover {
+  opacity: 0.6;
+}
+
+:disabled {
+  @include make-gray;
+
+  &:hover {
+    cursor: default;
+    opacity: 1;
+  }
+}

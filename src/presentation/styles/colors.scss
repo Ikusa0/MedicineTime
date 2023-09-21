@@ -1,0 +1,22 @@
+$primary: #30b2fe;
+$primaryLighten: lighten(
+  $color: $primary,
+  $amount: 5,
+);
+$primaryDark: #2d2d5b;
+$primaryLight: #28cbe7;
+$warning: #ca5aff;
+$warningDark: #763a90;
+$gray: #a3a3a3;
+$white: #fff;
+$background: #f4f7fe;
+$backgroundGradient: linear-gradient(135deg, $primary 0%, $primaryLight 71.35%);
+$backgroundGradientLight: linear-gradient(135deg, #2fb3fe 0%, #21dadc 100%);
+
+@mixin make-gray {
+  filter: grayscale(80%);
+}
+
+:export {
+  primaryLight: $primaryLight
+}

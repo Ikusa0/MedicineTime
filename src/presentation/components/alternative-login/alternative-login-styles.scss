@@ -1,0 +1,21 @@
+@import "../../styles/colors.scss";
+
+.alternativeLoginWrapper {
+  width: fit-content;
+  margin-top: 3.5rem;
+
+  span {
+    color: $primaryDark;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  div {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      border-radius: 50%;
+    }
+  }
+}

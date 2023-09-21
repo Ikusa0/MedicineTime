@@ -1,0 +1,18 @@
+@import "../../styles/colors.scss";
+
+.error {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1rem;
+  color: $warning;
+
+  span {
+    color: $warningDark;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .error {
+    width: 24rem;
+  }
+}
