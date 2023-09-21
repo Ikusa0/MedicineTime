@@ -143,3 +143,4 @@ dist
 *.vsix
 
 .husky
+public/js
