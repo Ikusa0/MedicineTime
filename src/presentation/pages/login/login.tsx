@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Styles from './login-styles.scss'
 import {
   AlternativeLogin,
@@ -24,6 +24,7 @@ type Props = {
 }
 
 const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
+  const navigate = useNavigate()
   const [state, setState] = useState<FormStateTypes>({
     warning: false,
     loading: false,
@@ -57,6 +58,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
         password: state.password
       })
       localStorage.setItem('access_token', account.accessToken)
+      navigate('/')
     } catch (err: any) {
       setState({ ...state, loading: false, error: err.message })
     }
