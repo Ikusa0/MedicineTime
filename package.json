@@ -15,6 +15,7 @@
     "@types/node": "^20.6.3",
     "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.7",
+    "@types/validator": "^13.11.1",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.8.1",
     "eslint-config-standard-with-typescript": "^39.0.0",
@@ -39,6 +40,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
     "react-router-dom": "^6.16.0",
-    "react-spinners": "^0.13.8"
+    "react-spinners": "^0.13.8",
+    "validator": "^13.11.0"
   }
 }
