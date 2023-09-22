@@ -12,11 +12,16 @@ import {
 import { IoMailOutline as MailIcon } from 'react-icons/io5'
 import { SlLock as LockIcon } from 'react-icons/sl'
 import FormContext, {
-  type FormContextTypes
+  type FormStateTypes
 } from '@/presentation/contexts/form-context'
+import { type Validation } from '@/presentation/protocols'
 
-const Login: React.FC = () => {
-  const [state, setState] = useState<FormContextTypes>({
+type Props = {
+  validation: Validation
+}
+
+const Login: React.FC<Props> = ({ validation }: Props) => {
+  const [state, setState] = useState<FormStateTypes>({
     warning: false,
     loading: false,
     email: '',
@@ -28,6 +33,8 @@ const Login: React.FC = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
     setState({ ...state, loading: true })
+    validation.validate('email', state.email)
+    validation.validate('password', state.password)
   }
 
   return (
@@ -35,7 +42,7 @@ const Login: React.FC = () => {
       {state.loading && <LoadingBar />}
       <div className={Styles.content}>
         <LogoBig />
-        <FormContext.Provider value={state}>
+        <FormContext.Provider value={{ state, setState }}>
           <section className={Styles.form}>
             {state.warning && <ErrorMessage text={state.error} />}
             <form onSubmit={handleSubmit}>
