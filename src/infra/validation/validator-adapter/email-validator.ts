@@ -6,6 +6,6 @@ export class EmailValidator implements FieldValidation {
   constructor (readonly field: string) { }
 
   validate (value: string): Error | null {
-    return validator.isEmail(value) ? null : new InvalidFieldError()
+    return (validator.isEmail(value) || validator.isEmpty(value)) ? null : new InvalidFieldError()
   }
 }
