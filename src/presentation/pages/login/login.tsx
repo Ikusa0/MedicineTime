@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Styles from './login-styles.scss'
 import {
   AlternativeLogin,
@@ -32,11 +33,16 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
       'Seu /*e-mail*/ ou /*senha*/ parecem estar incorretos, tente novamente.'
   })
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault()
     try {
       const emailValidation = validation.validate('email', state.email)
-      const passwordValidation = validation.validate('password', state.password)
+      const passwordValidation = validation.validate(
+        'password',
+        state.password
+      )
       if (emailValidation) {
         setState({ ...state, warning: true, error: emailValidation })
         return
@@ -86,9 +92,9 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
                   <LockIcon size={24} />
                 </IconLabeledInput>
                 <div className={Styles.submitWrapper}>
-                  <a href="#">
+                  <Link to="/recover">
                     <span>Esqueceu a senha?</span>
-                  </a>
+                  </Link>
                   <FilledButton disabled={state.loading} type="submit">
                     Entrar
                   </FilledButton>
@@ -96,9 +102,11 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
                 <AlternativeLogin disabled={state.loading} />
                 <legend>
                   <span>Ainda não cadastrado?</span>
-                  <UnfilledButton disabled={state.loading} type="button">
-                    Criar conta
-                  </UnfilledButton>
+                  <Link to="/signup">
+                    <UnfilledButton disabled={state.loading} type="button">
+                      Criar conta
+                    </UnfilledButton>
+                  </Link>
                 </legend>
               </fieldset>
             </form>
