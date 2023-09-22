@@ -39,17 +39,17 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
   ): Promise<void> => {
     event.preventDefault()
     try {
-      const emailValidation = validation.validate('email', state.email)
-      const passwordValidation = validation.validate(
+      const emailValidationError = validation.validate('email', state.email)
+      const passwordValidationError = validation.validate(
         'password',
         state.password
       )
-      if (emailValidation) {
-        setState({ ...state, warning: true, error: emailValidation })
+      if (emailValidationError) {
+        setState({ ...state, warning: true, error: emailValidationError })
         return
       }
-      if (passwordValidation) {
-        setState({ ...state, warning: true, error: passwordValidation })
+      if (passwordValidationError) {
+        setState({ ...state, warning: true, error: passwordValidationError })
         return
       }
       setState({ ...state, loading: true })
