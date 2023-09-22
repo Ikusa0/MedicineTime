@@ -15,12 +15,14 @@ import FormContext, {
   type FormStateTypes
 } from '@/presentation/contexts/form-context'
 import { type Validation } from '@/presentation/protocols'
+import { type Authentication } from '@/domain/usecases/authentication'
 
 type Props = {
   validation: Validation
+  authentication: Authentication
 }
 
-const Login: React.FC<Props> = ({ validation }: Props) => {
+const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
   const [state, setState] = useState<FormStateTypes>({
     warning: false,
     loading: false,
@@ -30,11 +32,28 @@ const Login: React.FC<Props> = ({ validation }: Props) => {
       'Seu /*e-mail*/ ou /*senha*/ parecem estar incorretos, tente novamente.'
   })
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
-    setState({ ...state, loading: true })
-    validation.validate('email', state.email)
-    validation.validate('password', state.password)
+    try {
+      const emailValidation = validation.validate('email', state.email)
+      const passwordValidation = validation.validate('password', state.password)
+      if (emailValidation) {
+        setState({ ...state, warning: true, error: emailValidation })
+        return
+      }
+      if (passwordValidation) {
+        setState({ ...state, warning: true, error: passwordValidation })
+        return
+      }
+      setState({ ...state, loading: true })
+      const account = await authentication.auth({
+        email: state.email,
+        password: state.password
+      })
+      localStorage.setItem('access_token', account.accessToken)
+    } catch (err: any) {
+      setState({ ...state, loading: false, error: err.message })
+    }
   }
 
   return (
