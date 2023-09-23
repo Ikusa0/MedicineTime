@@ -103,7 +103,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
                 <AlternativeLogin disabled={state.loading} />
                 <legend>
                   <span>Ainda não cadastrado?</span>
-                  <Link to="/signup">
+                  <Link to="/register">
                     <UnfilledButton disabled={state.loading} type="button">
                       Criar conta
                     </UnfilledButton>
