@@ -30,8 +30,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
     loading: false,
     email: '',
     password: '',
-    error:
-      'Seu /*e-mail*/ ou /*senha*/ parecem estar incorretos, tente novamente.'
+    error: ''
   })
 
   const handleSubmit = async (

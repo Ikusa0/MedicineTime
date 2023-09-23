@@ -1,6 +1,8 @@
+import { capitalize } from '@/utils'
+
 export class RequiredFieldError extends Error {
-  constructor () {
-    super('Campo Obrigatório')
+  constructor (field: string) {
+    super(`${capitalize(field)}: Campo obrigatório.`)
     this.name = 'RequiredFieldError'
   }
 }
