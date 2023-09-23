@@ -1,4 +1,4 @@
-export function capitalize (word: string): string {
+export const capitalize = (word: string): string => {
   if (word.length === 0) {
     return word
   }
