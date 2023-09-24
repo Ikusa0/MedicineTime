@@ -1,15 +1,13 @@
 {
-  "name": "medicinetime",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "medicine-time",
+  "version": "1.0.1",
+  "description": "React application to track medicines.",
+  "author": "Ayrton Porto",
+  "license": "ISC",
   "scripts": {
     "dev": "webpack-dev-server --open",
     "prepare": "husky install && husky set .husky/pre-commit 'npx lint-staged' && husky set .husky/commit-msg '.git/hooks/commit-msg $1'"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/node": "^20.6.3",
