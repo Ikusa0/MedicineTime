@@ -5,6 +5,6 @@ export class LocalSaveAccessToken implements SaveAccessToken {
   constructor (private readonly setStorage: SetStorage) { }
 
   save (accessToken: string): void {
-    this.setStorage.set('accessToken', accessToken)
+    this.setStorage.set('access_token', accessToken)
   }
 }

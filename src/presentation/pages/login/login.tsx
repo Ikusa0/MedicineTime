@@ -17,13 +17,15 @@ import FormContext, {
 } from '@/presentation/contexts/form-context'
 import { type Validation } from '@/presentation/protocols'
 import { type Authentication } from '@/domain/usecases/authentication'
+import { type SaveAccessToken } from '@/domain/usecases'
 
 type Props = {
   validation: Validation
   authentication: Authentication
+  saveAccessToken: SaveAccessToken
 }
 
-const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
+const Login: React.FC<Props> = ({ validation, authentication, saveAccessToken }: Props) => {
   const navigate = useNavigate()
   const [state, setState] = useState<FormStateTypes>({
     warning: false,
@@ -56,7 +58,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
         email: state.email,
         password: state.password
       })
-      localStorage.setItem('access_token', account.accessToken)
+      saveAccessToken.save(account.accessToken)
       navigate('/')
     } catch (err: any) {
       setState({ ...state, warning: true, loading: false, error: err.message })
