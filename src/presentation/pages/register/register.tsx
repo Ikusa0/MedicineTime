@@ -8,9 +8,7 @@ import {
   LogoBig,
   UnfilledButton
 } from '@/presentation/components'
-import FormContext, {
-  type FormStateTypes
-} from '@/presentation/contexts/form-context'
+import FormContext, { type FormStateTypes } from '@/presentation/contexts/form-context'
 import { type Validation } from '@/presentation/protocols'
 import React, { useEffect, useState } from 'react'
 import { FaCircleUser as UserIcon } from 'react-icons/fa6'
@@ -25,11 +23,7 @@ type Props = {
   saveAccessToken: SaveAccessToken
 }
 
-const Login: React.FC<Props> = ({
-  validation,
-  addAccount,
-  saveAccessToken
-}: Props) => {
+const Register: React.FC<Props> = ({ validation, addAccount, saveAccessToken }: Props) => {
   const navigate = useNavigate()
   const [state, setState] = useState<FormStateTypes>({
     warning: false,
@@ -45,9 +39,7 @@ const Login: React.FC<Props> = ({
     if (state.error) setState({ ...state, warning: true })
   }, [state.error])
 
-  const handleSubmit = async (
-    event: React.FormEvent<HTMLFormElement>
-  ): Promise<void> => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
     try {
       const nameValidationError = validation.validate('name', {
@@ -59,10 +51,10 @@ const Login: React.FC<Props> = ({
       const passwordValidationError = validation.validate('password', {
         value: state.password
       })
-      const passwordConfirmationValidationError = validation.validate(
-        'passwordConfirmation',
-        { value: state.passwordConfirmation, equals: state.password }
-      )
+      const passwordConfirmationValidationError = validation.validate('passwordConfirmation', {
+        value: state.passwordConfirmation,
+        equals: state.password
+      })
       if (nameValidationError) {
         setState({ ...state, error: nameValidationError })
         return
@@ -104,13 +96,7 @@ const Login: React.FC<Props> = ({
             <form onSubmit={handleSubmit}>
               <fieldset>
                 <legend>Crie uma conta para iniciar</legend>
-                <IconLabeledInput
-                  type="text"
-                  name="name"
-                  id="name"
-                  placeholder="Nome"
-                  required
-                >
+                <IconLabeledInput type="text" name="name" id="name" placeholder="Nome" required>
                   <UserIcon size={24} />
                 </IconLabeledInput>
                 <IconLabeledInput
@@ -132,7 +118,7 @@ const Login: React.FC<Props> = ({
                   <LockIcon size={24} />
                 </IconLabeledInput>
                 <IconLabeledInput
-                  type="passwordConfirmation"
+                  type="password"
                   name="passwordConfirmation"
                   id="passwordConfirmation"
                   placeholder="Confirme sua senha"
@@ -163,4 +149,4 @@ const Login: React.FC<Props> = ({
   )
 }
 
-export default Login
+export default Register
