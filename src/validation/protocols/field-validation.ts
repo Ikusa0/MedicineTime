@@ -1,4 +1,6 @@
+import { type ValidationOptions } from '@/presentation/protocols'
+
 export interface FieldValidation {
   field: string
-  validate: (value: string) => Error | null
+  validate: (options: ValidationOptions) => Error | null
 }

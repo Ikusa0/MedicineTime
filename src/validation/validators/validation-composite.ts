@@ -1,4 +1,4 @@
-import { type Validation } from '@/presentation/protocols'
+import { type Validation, type ValidationOptions } from '@/presentation/protocols'
 import { type FieldValidation } from '../protocols'
 
 type ValidatorsType = Record<string, FieldValidation[]>
@@ -10,10 +10,10 @@ export class ValidationComposite implements Validation {
     return new ValidationComposite(validators)
   }
 
-  validate (field: string, value: string): string | null {
+  validate (field: string, options: ValidationOptions): string | null {
     const validators = this.validators[field]
     for (const validator of validators) {
-      const error = validator.validate(value)
+      const error = validator.validate(options)
       if (error) {
         return error.message
       }

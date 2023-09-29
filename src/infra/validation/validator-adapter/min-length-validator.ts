@@ -1,11 +1,14 @@
+import { type ValidationOptions } from '@/presentation/protocols'
 import { InvalidFieldError } from '@/validation/errors'
 import { type FieldValidation } from '@/validation/protocols'
 import validator from 'validator'
 
 export class MinLengthValidator implements FieldValidation {
-  constructor (readonly field: string, private readonly minLength: number) { }
+  constructor (readonly field: string, private readonly minLength: number) {}
 
-  validate (value: string): Error | null {
-    return validator.isLength(value, { min: this.minLength }) ? null : new InvalidFieldError(this.field)
+  validate (options: ValidationOptions): Error | null {
+    return validator.isLength(options.value, { min: this.minLength })
+      ? null
+      : new InvalidFieldError(this.field)
   }
 }

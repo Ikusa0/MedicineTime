@@ -1,10 +1,16 @@
-import { InvalidFieldError } from '@/validation/errors'
+import { type ValidationOptions } from '@/presentation/protocols'
+import { NotMatchingFieldsError } from '@/validation/errors'
 import { type FieldValidation } from '@/validation/protocols'
 
 export class CompareFieldsValidator implements FieldValidation {
-  constructor (readonly field: string, private readonly valueToCompare: string) { }
+  constructor (
+    readonly field: string,
+    private readonly fieldToCompare: string
+  ) {}
 
-  validate (value: string): Error | null {
-    return value === this.valueToCompare ? null : new InvalidFieldError(this.field)
+  validate (options: ValidationOptions): Error | null {
+    return options.value === options.equals
+      ? null
+      : new NotMatchingFieldsError(this.field, this.fieldToCompare)
   }
 }

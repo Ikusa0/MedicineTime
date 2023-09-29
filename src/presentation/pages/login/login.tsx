@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import Styles from './login-styles.scss'
+import { type SaveAccessToken } from '@/domain/usecases'
+import { type Authentication } from '@/domain/usecases/authentication'
 import {
   AlternativeLogin,
   ErrorMessage,
@@ -10,14 +9,15 @@ import {
   LogoBig,
   UnfilledButton
 } from '@/presentation/components'
-import { IoMailOutline as MailIcon } from 'react-icons/io5'
-import { SlLock as LockIcon } from 'react-icons/sl'
 import FormContext, {
   type FormStateTypes
 } from '@/presentation/contexts/form-context'
 import { type Validation } from '@/presentation/protocols'
-import { type Authentication } from '@/domain/usecases/authentication'
-import { type SaveAccessToken } from '@/domain/usecases'
+import React, { useEffect, useState } from 'react'
+import { IoMailOutline as MailIcon } from 'react-icons/io5'
+import { SlLock as LockIcon } from 'react-icons/sl'
+import { Link, useNavigate } from 'react-router-dom'
+import Styles from './login-styles.scss'
 
 type Props = {
   validation: Validation
@@ -25,7 +25,11 @@ type Props = {
   saveAccessToken: SaveAccessToken
 }
 
-const Login: React.FC<Props> = ({ validation, authentication, saveAccessToken }: Props) => {
+const Login: React.FC<Props> = ({
+  validation,
+  authentication,
+  saveAccessToken
+}: Props) => {
   const navigate = useNavigate()
   const [state, setState] = useState<FormStateTypes>({
     warning: false,
@@ -44,11 +48,12 @@ const Login: React.FC<Props> = ({ validation, authentication, saveAccessToken }:
   ): Promise<void> => {
     event.preventDefault()
     try {
-      const emailValidationError = validation.validate('email', state.email)
-      const passwordValidationError = validation.validate(
-        'password',
-        state.password
-      )
+      const emailValidationError = validation.validate('email', {
+        value: state.email
+      })
+      const passwordValidationError = validation.validate('password', {
+        value: state.password
+      })
       if (emailValidationError) {
         setState({ ...state, error: emailValidationError })
         return
@@ -99,7 +104,10 @@ const Login: React.FC<Props> = ({ validation, authentication, saveAccessToken }:
                   <LockIcon size={24} />
                 </IconLabeledInput>
                 <div className={Styles.submitWrapper}>
-                  <Link className={state.loading ? Styles.disabledAnchor : ''} to="/recover">
+                  <Link
+                    className={state.loading ? Styles.disabledAnchor : ''}
+                    to="/recover"
+                  >
                     <span>Esqueceu a senha?</span>
                   </Link>
                   <FilledButton disabled={state.loading} type="submit">

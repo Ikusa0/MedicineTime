@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import Styles from './register-styles.scss'
+import { type AddAccount, type SaveAccessToken } from '@/domain/usecases'
 import {
   AlternativeLogin,
   ErrorMessage,
@@ -10,14 +8,16 @@ import {
   LogoBig,
   UnfilledButton
 } from '@/presentation/components'
-import { IoMailOutline as MailIcon } from 'react-icons/io5'
-import { SlLock as LockIcon } from 'react-icons/sl'
-import { FaCircleUser as UserIcon } from 'react-icons/fa6'
 import FormContext, {
   type FormStateTypes
 } from '@/presentation/contexts/form-context'
 import { type Validation } from '@/presentation/protocols'
-import { type SaveAccessToken, type AddAccount } from '@/domain/usecases'
+import React, { useEffect, useState } from 'react'
+import { FaCircleUser as UserIcon } from 'react-icons/fa6'
+import { IoMailOutline as MailIcon } from 'react-icons/io5'
+import { SlLock as LockIcon } from 'react-icons/sl'
+import { Link, useNavigate } from 'react-router-dom'
+import Styles from './register-styles.scss'
 
 type Props = {
   validation: Validation
@@ -25,7 +25,11 @@ type Props = {
   saveAccessToken: SaveAccessToken
 }
 
-const Login: React.FC<Props> = ({ validation, addAccount, saveAccessToken }: Props) => {
+const Login: React.FC<Props> = ({
+  validation,
+  addAccount,
+  saveAccessToken
+}: Props) => {
   const navigate = useNavigate()
   const [state, setState] = useState<FormStateTypes>({
     warning: false,
@@ -38,7 +42,7 @@ const Login: React.FC<Props> = ({ validation, addAccount, saveAccessToken }: Pro
   })
 
   useEffect(() => {
-    setState({ ...state, warning: true })
+    if (state.error) setState({ ...state, warning: true })
   }, [state.error])
 
   const handleSubmit = async (
@@ -46,13 +50,19 @@ const Login: React.FC<Props> = ({ validation, addAccount, saveAccessToken }: Pro
   ): Promise<void> => {
     event.preventDefault()
     try {
-      const nameValidationError = validation.validate('name', state.name)
-      const emailValidationError = validation.validate('email', state.email)
-      const passwordValidationError = validation.validate(
-        'password',
-        state.password
+      const nameValidationError = validation.validate('name', {
+        value: state.name
+      })
+      const emailValidationError = validation.validate('email', {
+        value: state.email
+      })
+      const passwordValidationError = validation.validate('password', {
+        value: state.password
+      })
+      const passwordConfirmationValidationError = validation.validate(
+        'passwordConfirmation',
+        { value: state.passwordConfirmation, equals: state.password }
       )
-      const passwordConfirmationValidationError = validation.validate('passwordConfirmation', state.passwordConfirmation)
       if (nameValidationError) {
         setState({ ...state, error: nameValidationError })
         return
@@ -138,7 +148,7 @@ const Login: React.FC<Props> = ({ validation, addAccount, saveAccessToken }: Pro
                 <AlternativeLogin disabled={state.loading} />
                 <legend>
                   <span>Já possui conta?</span>
-                  <Link to="/register">
+                  <Link to="/login">
                     <UnfilledButton disabled={state.loading} type="button">
                       Entrar
                     </UnfilledButton>

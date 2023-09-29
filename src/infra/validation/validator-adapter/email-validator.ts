@@ -1,11 +1,14 @@
+import { type ValidationOptions } from '@/presentation/protocols'
 import { InvalidFieldError } from '@/validation/errors'
 import { type FieldValidation } from '@/validation/protocols'
 import validator from 'validator'
 
 export class EmailValidator implements FieldValidation {
-  constructor (readonly field: string) { }
+  constructor (readonly field: string) {}
 
-  validate (value: string): Error | null {
-    return (validator.isEmail(value) || validator.isEmpty(value)) ? null : new InvalidFieldError(this.field)
+  validate (options: ValidationOptions): Error | null {
+    return validator.isEmail(options.value) || validator.isEmpty(options.value)
+      ? null
+      : new InvalidFieldError(this.field)
   }
 }
