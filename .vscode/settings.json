@@ -7,6 +7,7 @@
     "source.organizeImports": true,
     "source.fixAll.eslint": true
   },
+  "editor.wordWrapColumn": 100,
   "eslint.validate": ["typescript", "javascript"],
   "discord.enabled": false
 }
