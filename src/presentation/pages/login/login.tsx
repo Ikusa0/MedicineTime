@@ -95,7 +95,7 @@ const Login: React.FC<Props> = ({ validation, authentication, saveAccessToken }:
                   <LockIcon size={24} />
                 </IconLabeledInput>
                 <div className={Styles.submitWrapper}>
-                  <Link to="/recover">
+                  <Link className={state.loading ? Styles.disabledAnchor : ''} to="/recover">
                     <span>Esqueceu a senha?</span>
                   </Link>
                   <FilledButton disabled={state.loading} type="submit">

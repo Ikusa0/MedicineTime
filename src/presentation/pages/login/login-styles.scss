@@ -3,6 +3,10 @@
 .login {
   background: $backgroundGradient;
 
+  .disabledAnchor {
+    pointer-events: none;
+  }
+
   .content {
     display: flex;
     flex-direction: column;
