@@ -1,7 +1,7 @@
 $primary: #30b2fe;
 $primaryLighten: lighten(
   $color: $primary,
-  $amount: 5,
+  $amount: 5
 );
 $primaryDark: #2d2d5b;
 $primaryLight: #28cbe7;
@@ -18,5 +18,5 @@ $backgroundGradientLight: linear-gradient(135deg, #2fb3fe 0%, #21dadc 100%);
 }
 
 :export {
-  primaryLight: $primaryLight
+  primaryLight: $primaryLight;
 }

@@ -9,9 +9,7 @@ import {
   LogoBig,
   UnfilledButton
 } from '@/presentation/components'
-import FormContext, {
-  type FormStateTypes
-} from '@/presentation/contexts/form-context'
+import FormContext, { type FormStateTypes } from '@/presentation/contexts/form-context'
 import { type Validation } from '@/presentation/protocols'
 import React, { useEffect, useState } from 'react'
 import { IoMailOutline as MailIcon } from 'react-icons/io5'
@@ -25,11 +23,7 @@ type Props = {
   saveAccessToken: SaveAccessToken
 }
 
-const Login: React.FC<Props> = ({
-  validation,
-  authentication,
-  saveAccessToken
-}: Props) => {
+const Login: React.FC<Props> = ({ validation, authentication, saveAccessToken }: Props) => {
   const navigate = useNavigate()
   const [state, setState] = useState<FormStateTypes>({
     warning: false,
@@ -43,9 +37,7 @@ const Login: React.FC<Props> = ({
     if (state.error) setState({ ...state, warning: true })
   }, [state.error])
 
-  const handleSubmit = async (
-    event: React.FormEvent<HTMLFormElement>
-  ): Promise<void> => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
     try {
       const emailValidationError = validation.validate('email', {
@@ -104,10 +96,7 @@ const Login: React.FC<Props> = ({
                   <LockIcon size={24} />
                 </IconLabeledInput>
                 <div className={Styles.submitWrapper}>
-                  <Link
-                    className={state.loading ? Styles.disabledAnchor : ''}
-                    to="/recover"
-                  >
+                  <Link className={state.loading ? Styles.disabledAnchor : ''} to="/recover">
                     <span>Esqueceu a senha?</span>
                   </Link>
                   <FilledButton disabled={state.loading} type="submit">

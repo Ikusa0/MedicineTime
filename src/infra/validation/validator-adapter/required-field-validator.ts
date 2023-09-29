@@ -7,8 +7,6 @@ export class RequiredFieldValidator implements FieldValidation {
   constructor (readonly field: string) {}
 
   validate (options: ValidationOptions): Error | null {
-    return validator.isEmpty(options.value)
-      ? new RequiredFieldError(this.field)
-      : null
+    return validator.isEmpty(options.value) ? new RequiredFieldError(this.field) : null
   }
 }

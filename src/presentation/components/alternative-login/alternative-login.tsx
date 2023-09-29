@@ -1,6 +1,6 @@
+import { FacebookSVG, GoogleSVG } from '@/presentation/images'
 import React from 'react'
 import Styles from './alternative-login-styles.scss'
-import { FacebookSVG, GoogleSVG } from '@/presentation/images'
 
 type PropsType = React.DetailedHTMLProps<
 React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -12,10 +12,10 @@ const AlternativeLogin: React.FC<PropsType> = (props: PropsType) => {
     <div className={Styles.alternativeLoginWrapper}>
       <span>ou entre usando</span>
       <div>
-        <button {...props} type='button'>
+        <button {...props} type="button">
           <FacebookSVG />
         </button>
-        <button {...props} type='button'>
+        <button {...props} type="button">
           <GoogleSVG />
         </button>
       </div>

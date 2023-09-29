@@ -1,6 +1,6 @@
+import FormContext from '@/presentation/contexts/form-context'
 import React, { useContext } from 'react'
 import Styles from './input-styles.scss'
-import FormContext from '@/presentation/contexts/form-context'
 
 type PropsType = React.DetailedHTMLProps<
 React.InputHTMLAttributes<HTMLInputElement>,
@@ -22,13 +22,9 @@ const IconLabeledInput: React.FC<PropsType> = (props: PropsType) => {
   }
 
   return (
-    <div
-      className={`${Styles.iconLabeledInput} ${warning ? Styles.warning : ''}`}
-    >
-      <input {...inputProps} onChange={handleChange}/>
-      <label htmlFor={props.id}>
-        {props.children}
-      </label>
+    <div className={`${Styles.iconLabeledInput} ${warning ? Styles.warning : ''}`}>
+      <input {...inputProps} onChange={handleChange} />
+      <label htmlFor={props.id}>{props.children}</label>
     </div>
   )
 }
