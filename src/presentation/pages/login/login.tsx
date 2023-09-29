@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Styles from './login-styles.scss'
 import {
@@ -35,6 +35,10 @@ const Login: React.FC<Props> = ({ validation, authentication, saveAccessToken }:
     error: ''
   })
 
+  useEffect(() => {
+    if (state.error) setState({ ...state, warning: true })
+  }, [state.error])
+
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
@@ -46,11 +50,11 @@ const Login: React.FC<Props> = ({ validation, authentication, saveAccessToken }:
         state.password
       )
       if (emailValidationError) {
-        setState({ ...state, warning: true, error: emailValidationError })
+        setState({ ...state, error: emailValidationError })
         return
       }
       if (passwordValidationError) {
-        setState({ ...state, warning: true, error: passwordValidationError })
+        setState({ ...state, error: passwordValidationError })
         return
       }
       setState({ ...state, loading: true })
@@ -61,7 +65,7 @@ const Login: React.FC<Props> = ({ validation, authentication, saveAccessToken }:
       saveAccessToken.save(account.accessToken)
       navigate('/')
     } catch (err: any) {
-      setState({ ...state, warning: true, loading: false, error: err.message })
+      setState({ ...state, loading: false, error: err.message })
     }
   }
 

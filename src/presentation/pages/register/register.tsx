@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Styles from './register-styles.scss'
 import {
@@ -37,27 +37,36 @@ const Login: React.FC<Props> = ({ validation, addAccount, saveAccessToken }: Pro
     error: ''
   })
 
+  useEffect(() => {
+    setState({ ...state, warning: true })
+  }, [state.error])
+
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     event.preventDefault()
     try {
+      const nameValidationError = validation.validate('name', state.name)
       const emailValidationError = validation.validate('email', state.email)
       const passwordValidationError = validation.validate(
         'password',
         state.password
       )
       const passwordConfirmationValidationError = validation.validate('passwordConfirmation', state.passwordConfirmation)
+      if (nameValidationError) {
+        setState({ ...state, error: nameValidationError })
+        return
+      }
       if (emailValidationError) {
-        setState({ ...state, warning: true, error: emailValidationError })
+        setState({ ...state, error: emailValidationError })
         return
       }
       if (passwordValidationError) {
-        setState({ ...state, warning: true, error: passwordValidationError })
+        setState({ ...state, error: passwordValidationError })
         return
       }
       if (passwordConfirmationValidationError) {
-        setState({ ...state, warning: true, error: passwordConfirmationValidationError })
+        setState({ ...state, error: passwordConfirmationValidationError })
         return
       }
       setState({ ...state, loading: true })
@@ -70,7 +79,7 @@ const Login: React.FC<Props> = ({ validation, addAccount, saveAccessToken }: Pro
       saveAccessToken.save(account.accessToken)
       navigate('/')
     } catch (err: any) {
-      setState({ ...state, warning: true, loading: false, error: err.message })
+      setState({ ...state, loading: false, error: err.message })
     }
   }
 
