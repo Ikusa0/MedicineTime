@@ -3,15 +3,12 @@ import { createContext } from 'react'
 export type FormStateTypes = {
   warning: boolean
   loading: boolean
-  email: string
-  password: string
   error: string
-}
+} & Record<string, any>
 
 type FormContextTypes = {
   state: FormStateTypes
-  setState:
-  React.Dispatch<React.SetStateAction<FormStateTypes>>
+  setState: React.Dispatch<React.SetStateAction<FormStateTypes>>
 }
 
 const FormContext = createContext<FormContextTypes | null>(null)
