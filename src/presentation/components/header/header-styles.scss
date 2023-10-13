@@ -1,0 +1,36 @@
+@import '../../styles/colors.scss';
+
+.header {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: $lightGray;
+  position: fixed;
+  top: 0;
+
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .pageTitle {
+      color: $primaryDark;
+      font-family: Roboto;
+      font-size: 1.25rem;
+      font-weight: 700;
+      padding-bottom: 0.25rem;
+      border-bottom: 3px solid $primary;
+  
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    position: initial;
+    padding: 1rem 2rem;
+  
+    .content .pageTitle {
+      font-size: 1.75rem;  
+      border-bottom: 4px solid $primary;
+  
+    }
+  }
+}

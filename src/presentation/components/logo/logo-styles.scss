@@ -1,43 +1,23 @@
 @import '../../styles/colors.scss';
 
-.logoMedium,
 .logoBig {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 0.5rem;
 
   span {
     color: $primaryDark;
     font-family: Josefin Sans;
     font-weight: 700;
+    font-size: 2rem;
   }
-
-  span:nth-of-type(2) {
-    color: $primary;
-  }
-}
-
-.logoBig {
-  flex-direction: column;
 
   .image {
     width: 3.5rem;
     height: 5rem;
   }
 
-  span {
-    font-size: 2rem;
-  }
-}
-
-.logoMedium {
-
-  .image {
-    width: 1.5rem;
-    height: 2.25rem;
-  }
-
-  span {
-    font-size: 1.5rem;
+  span:nth-of-type(2) {
+    color: $primary;
   }
 }
