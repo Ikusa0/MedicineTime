@@ -1,4 +1,4 @@
-import FormContext from '@/presentation/contexts/form-context'
+import { FormContext } from '@/presentation/contexts'
 import React, { useContext } from 'react'
 import Styles from './input-styles.scss'
 
