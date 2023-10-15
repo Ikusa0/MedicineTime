@@ -1,0 +1,9 @@
+@import '../../styles/colors.scss';
+
+.card {
+  background-color: $white;
+  border-radius: 2rem;
+  padding: 1rem;
+  @include bottom-black-shadow;
+  gap: 1rem;
+}
