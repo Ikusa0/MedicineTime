@@ -1,5 +1,4 @@
-import { type SaveAccessToken } from '@/domain/usecases'
-import { type Authentication } from '@/domain/usecases/authentication'
+import { type Authentication, type SaveAccessToken } from '@/domain/usecases'
 import {
   AlternativeLogin,
   ErrorMessage,
@@ -9,7 +8,7 @@ import {
   LogoBig,
   UnfilledButton
 } from '@/presentation/components'
-import FormContext, { type FormStateTypes } from '@/presentation/contexts/form-context'
+import { FormContext, type FormStateTypes } from '@/presentation/contexts'
 import { type Validation } from '@/presentation/protocols'
 import React, { useEffect, useState } from 'react'
 import { IoMailOutline as MailIcon } from 'react-icons/io5'

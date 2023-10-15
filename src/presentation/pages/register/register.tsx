@@ -8,7 +8,7 @@ import {
   LogoBig,
   UnfilledButton
 } from '@/presentation/components'
-import FormContext, { type FormStateTypes } from '@/presentation/contexts/form-context'
+import { FormContext, type FormStateTypes } from '@/presentation/contexts'
 import { type Validation } from '@/presentation/protocols'
 import React, { useEffect, useState } from 'react'
 import { FaCircleUser as UserIcon } from 'react-icons/fa6'

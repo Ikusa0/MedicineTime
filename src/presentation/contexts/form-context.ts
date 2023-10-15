@@ -11,6 +11,4 @@ type FormContextTypes = {
   setState: React.Dispatch<React.SetStateAction<FormStateTypes>>
 }
 
-const FormContext = createContext<FormContextTypes | null>(null)
-
-export default FormContext
+export const FormContext = createContext<FormContextTypes | null>(null)
