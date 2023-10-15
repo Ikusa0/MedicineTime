@@ -1,7 +1,7 @@
-import HeaderContext from '@/presentation/contexts/header-context'
+import { HeaderContext } from '@/presentation/contexts'
 import React, { useContext, useState } from 'react'
+import { CgMenuGridR as MenuIcon } from 'react-icons/cg'
 import DropdownList from '../dropdown-list/dropdown-list'
-import UserImage from '../user-image/user-image'
 import Styles from './header-styles.scss'
 
 const Header: React.FC = () => {
@@ -18,7 +18,7 @@ const Header: React.FC = () => {
     <header className={Styles.header}>
       <div className={Styles.content}>
         <span className={Styles.pageTitle}>{title}</span>
-        <UserImage onClick={toggleDropdownList} letter="A" />
+        <MenuIcon className={Styles.menuIcon} onClick={toggleDropdownList} />
         {state.isDropdownListActive && <DropdownList />}
       </div>
     </header>

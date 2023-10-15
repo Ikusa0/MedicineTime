@@ -2,10 +2,11 @@
 
 .header {
   width: 100%;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   background-color: $lightGray;
-  position: fixed;
+  position: sticky;
   top: 0;
+  z-index: 1;
 
   .content {
     display: flex;
@@ -19,13 +20,20 @@
       font-weight: 700;
       padding-bottom: 0.25rem;
       border-bottom: 3px solid $primary;
-  
+    }
+
+    .menuIcon {
+      width: 2rem;
+      height: 2rem;
+
+      &:hover {
+        cursor: pointer
+      }
     }
   }
 
   @media screen and (min-width: 769px) {
-    position: initial;
-    padding: 1rem 2rem;
+    padding: 1.5rem 2rem;
   
     .content .pageTitle {
       font-size: 1.75rem;  
