@@ -13,6 +13,18 @@ const EnvironmentList: React.FC = () => {
       name: 'Casa de Glaube',
       address: 'Rua Anísio Ferreira Aguiar, 25. apto. 103',
       iconName: 'house'
+    },
+    {
+      id: '1',
+      name: 'Casa de Glaube',
+      address: 'Rua Anísio Ferreira Aguiar, 25. apto. 103',
+      iconName: 'house'
+    },
+    {
+      id: '1',
+      name: 'Casa de Glaube',
+      address: 'Rua Anísio Ferreira Aguiar, 25. apto. 103',
+      iconName: 'house'
     }
   ]
   const isEmpty = false
@@ -46,20 +58,9 @@ const EnvironmentList: React.FC = () => {
                 </button>
               </PageMenu>
               <div className={Styles.environmentCardGrid}>
-                <EnvironmentCard {...environments[0]} />
-                <EnvironmentCard {...environments[0]} />
-                <EnvironmentCard {...environments[0]} />
-                <EnvironmentCard {...environments[0]} />
-                <EnvironmentCard {...environments[0]} />
-                <EnvironmentCard {...environments[0]} />
-                <EnvironmentCard {...environments[0]} />
-                <EnvironmentCard {...environments[0]} />
-                <EnvironmentCard {...environments[0]} />
-                <EnvironmentCard {...environments[0]} />
-                <EnvironmentCard {...environments[0]} />
-                <EnvironmentCard {...environments[0]} />
-                <EnvironmentCard {...environments[0]} />
-                <EnvironmentCard {...environments[0]} />
+                {environments.map((environment, index) => {
+                  return <EnvironmentCard {...environment} key={index} />
+                })}
               </div>
             </>
               )}
