@@ -1,4 +1,4 @@
-import { type Authentication, type UpdateCurrentAccount } from '@/domain/usecases'
+import { type Authentication } from '@/domain/usecases'
 import {
   AlternativeLogin,
   ErrorMessage,
@@ -8,9 +8,9 @@ import {
   LogoBig,
   UnfilledButton
 } from '@/presentation/components'
-import { FormContext, type FormStateTypes } from '@/presentation/contexts'
+import { AuthContext, FormContext, type FormStateTypes } from '@/presentation/contexts'
 import { type Validation } from '@/presentation/protocols'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { IoMailOutline as MailIcon } from 'react-icons/io5'
 import { SlLock as LockIcon } from 'react-icons/sl'
 import { Link, useNavigate } from 'react-router-dom'
@@ -19,10 +19,10 @@ import Styles from './login-styles.scss'
 type Props = {
   validation: Validation
   authentication: Authentication
-  updateCurrentAccount: UpdateCurrentAccount
 }
 
-const Login: React.FC<Props> = ({ validation, authentication, updateCurrentAccount }: Props) => {
+const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
+  const { updateCurrentAccount } = useContext(AuthContext)!
   const navigate = useNavigate()
   const [state, setState] = useState<FormStateTypes>({
     warning: false,
@@ -58,7 +58,7 @@ const Login: React.FC<Props> = ({ validation, authentication, updateCurrentAccou
         email: state.email,
         password: state.password
       })
-      updateCurrentAccount.save(account)
+      updateCurrentAccount(account)
       navigate('/')
     } catch (err: any) {
       setState({ ...state, loading: false, error: err.message })

@@ -1,4 +1,4 @@
-import { type AddAccount, type UpdateCurrentAccount } from '@/domain/usecases'
+import { type AddAccount } from '@/domain/usecases'
 import {
   AlternativeLogin,
   ErrorMessage,
@@ -8,9 +8,9 @@ import {
   LogoBig,
   UnfilledButton
 } from '@/presentation/components'
-import { FormContext, type FormStateTypes } from '@/presentation/contexts'
+import { AuthContext, FormContext, type FormStateTypes } from '@/presentation/contexts'
 import { type Validation } from '@/presentation/protocols'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FaCircleUser as UserIcon } from 'react-icons/fa6'
 import { IoMailOutline as MailIcon } from 'react-icons/io5'
 import { SlLock as LockIcon } from 'react-icons/sl'
@@ -20,10 +20,10 @@ import Styles from './register-styles.scss'
 type Props = {
   validation: Validation
   addAccount: AddAccount
-  updateCurrentAccount: UpdateCurrentAccount
 }
 
-const Register: React.FC<Props> = ({ validation, addAccount, updateCurrentAccount }: Props) => {
+const Register: React.FC<Props> = ({ validation, addAccount }: Props) => {
+  const { updateCurrentAccount } = useContext(AuthContext)!
   const navigate = useNavigate()
   const [state, setState] = useState<FormStateTypes>({
     warning: false,
@@ -78,7 +78,7 @@ const Register: React.FC<Props> = ({ validation, addAccount, updateCurrentAccoun
         password: state.password,
         passwordConfirmation: state.passwordConfirmation
       })
-      updateCurrentAccount.save(account)
+      updateCurrentAccount(account)
       navigate('/')
     } catch (err: any) {
       setState({ ...state, loading: false, error: err.message })

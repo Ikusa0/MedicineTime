@@ -2,14 +2,12 @@ import { makeLoginValidation } from '@/main/factories/pages/login/login-validati
 import { makeApiAuthentication } from '@/main/factories/usecases/authentication/api-authentication-factory'
 import { Login } from '@/presentation/pages'
 import React from 'react'
-import { makeLocalUpdateCurrentAccount } from '../../usecases/cache/local-update-current-account-factory'
 
 export const makeLogin: React.FC = () => {
   return (
     <Login
       authentication={makeApiAuthentication()}
       validation={makeLoginValidation()}
-      updateCurrentAccount={makeLocalUpdateCurrentAccount()}
     />
   )
 }

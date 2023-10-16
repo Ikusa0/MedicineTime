@@ -1,4 +1,6 @@
+import { updateCurrentAccountAdapter } from '@/main/adapters/current-account-adapter'
 import Router from '@/main/routes/router'
+import { AuthContext } from '@/presentation/contexts'
 import '@/presentation/styles/global.scss'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
@@ -6,6 +8,8 @@ import { RouterProvider } from 'react-router-dom'
 
 ReactDOM.createRoot(document.getElementById('main') as Element).render(
   <React.StrictMode>
-    <RouterProvider router={Router} />
+    <AuthContext.Provider value={{ updateCurrentAccount: updateCurrentAccountAdapter }}>
+      <RouterProvider router={Router} />
+    </AuthContext.Provider>
   </React.StrictMode>
 )
