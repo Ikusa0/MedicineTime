@@ -1,11 +1,14 @@
-import { HeaderContext } from '@/presentation/contexts'
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { CgMenuGridR as MenuIcon } from 'react-icons/cg'
 import DropdownList from '../dropdown-list/dropdown-list'
 import Styles from './header-styles.scss'
 
-const Header: React.FC = () => {
-  const { title } = useContext(HeaderContext)
+type PropsType = {
+  title: string
+}
+
+const Header: React.FC<PropsType> = (props: PropsType) => {
+  const { title } = props
   const [state, setState] = useState({
     isDropdownListActive: false
   })

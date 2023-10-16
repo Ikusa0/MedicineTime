@@ -1,6 +1,5 @@
 import { Header, PageMenu } from '@/presentation/components'
 import EnvironmentCard from '@/presentation/components/environment-card/environment-card'
-import { HeaderContext } from '@/presentation/contexts'
 import { PharmacistSVG } from '@/presentation/images'
 import React from 'react'
 import { MdOutlineAddCircle as AddEnvironmentIcon } from 'react-icons/md'
@@ -32,8 +31,7 @@ const EnvironmentList: React.FC = () => {
 
   return (
     <div className={`${Styles.environmentList} ${isEmpty ? Styles.empty : ''}`}>
-      <HeaderContext.Provider value={{ title: 'Ambientes' }}>
-        <Header />
+        <Header title='Ambientes'/>
         <div className={Styles.content}>
           {isLoading
             ? (
@@ -77,7 +75,6 @@ const EnvironmentList: React.FC = () => {
             </>
                 )}
         </div>
-      </HeaderContext.Provider>
     </div>
   )
 }
