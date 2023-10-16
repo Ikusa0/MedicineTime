@@ -27,7 +27,7 @@ const EnvironmentList: React.FC = () => {
       iconName: 'house'
     }
   ]
-  const isEmpty = true
+  const isEmpty = false
   const isLoading = true
 
   return (

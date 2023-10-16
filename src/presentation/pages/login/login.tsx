@@ -1,4 +1,4 @@
-import { type Authentication, type SaveAccessToken } from '@/domain/usecases'
+import { type Authentication, type UpdateCurrentAccount } from '@/domain/usecases'
 import {
   AlternativeLogin,
   ErrorMessage,
@@ -19,10 +19,10 @@ import Styles from './login-styles.scss'
 type Props = {
   validation: Validation
   authentication: Authentication
-  saveAccessToken: SaveAccessToken
+  updateCurrentAccount: UpdateCurrentAccount
 }
 
-const Login: React.FC<Props> = ({ validation, authentication, saveAccessToken }: Props) => {
+const Login: React.FC<Props> = ({ validation, authentication, updateCurrentAccount }: Props) => {
   const navigate = useNavigate()
   const [state, setState] = useState<FormStateTypes>({
     warning: false,
@@ -58,7 +58,7 @@ const Login: React.FC<Props> = ({ validation, authentication, saveAccessToken }:
         email: state.email,
         password: state.password
       })
-      saveAccessToken.save(account.accessToken)
+      updateCurrentAccount.save(account)
       navigate('/')
     } catch (err: any) {
       setState({ ...state, loading: false, error: err.message })
