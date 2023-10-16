@@ -15,7 +15,7 @@ const icons: Record<string, IconType> = {
 const EnvironmentIcon: React.FC<PropsType> = (props: PropsType) => {
   const { iconName, ...svgProps } = props
 
-  const IconComponent = icons[props.iconName]
+  const IconComponent = icons[iconName]
 
   if (IconComponent) {
     return <IconComponent {...svgProps} />
