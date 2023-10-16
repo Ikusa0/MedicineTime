@@ -27,19 +27,31 @@ const EnvironmentList: React.FC = () => {
       iconName: 'house'
     }
   ]
-  const isEmpty = false
+  const isEmpty = true
+  const isLoading = true
 
   return (
     <div className={`${Styles.environmentList} ${isEmpty ? Styles.empty : ''}`}>
       <HeaderContext.Provider value={{ title: 'Ambientes' }}>
         <Header />
         <div className={Styles.content}>
-          {isEmpty
+          {isLoading
             ? (
+            <>
+              <div className={Styles.environmentCardGrid}>
+                <EnvironmentCard />
+                <EnvironmentCard />
+                <EnvironmentCard />
+                <EnvironmentCard />
+              </div>
+            </>
+              )
+            : isEmpty
+              ? (
             <div className={Styles.emptyPage}>
               <div>
                 <h1>
-                  Parece que você ainda não criou nenhum <span>ambiente</span>!
+                  Parece que você ainda não tem nenhum <span>ambiente</span>!
                 </h1>
                 <div className={Styles.iconWrapper}>
                   <AddEnvironmentIcon className={Styles.icon} />
@@ -48,8 +60,8 @@ const EnvironmentList: React.FC = () => {
               </div>
               <PharmacistSVG className={Styles.banner} />
             </div>
-              )
-            : (
+                )
+              : (
             <>
               <PageMenu>
                 <button className={Styles.iconWrapper}>
@@ -63,7 +75,7 @@ const EnvironmentList: React.FC = () => {
                 })}
               </div>
             </>
-              )}
+                )}
         </div>
       </HeaderContext.Provider>
     </div>
