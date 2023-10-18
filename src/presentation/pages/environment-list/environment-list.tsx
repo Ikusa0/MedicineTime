@@ -16,46 +16,51 @@ const EnvironmentList: React.FC<PropsType> = ({ loadEnvironmentList }: PropsType
     environments: [] as EnvironmentModel[],
     isLoading: true,
     isEmpty: false,
-    error: false
+    error: false,
+    reload: false
   })
+
+  const reload = (): void => {
+    setState({ ...state, error: false, reload: !state.reload, isLoading: true })
+  }
 
   useEffect(() => {
     void (async function () {
       try {
-        // throw new Error('Faiô')
-        state.environments = [
-          {
-            id: '1',
-            name: 'Casa de Glaube',
-            address: 'Rua Anísio Ferreira Aguiar, 25. apto. 103',
-            iconName: 'house'
-          },
-          {
-            id: '1',
-            name: 'Casa de Glaube',
-            address: 'Rua Anísio Ferreira Aguiar, 25. apto. 103',
-            iconName: 'house'
-          },
-          {
-            id: '1',
-            name: 'Casa de Glaube',
-            address: 'Rua Anísio Ferreira Aguiar, 25. apto. 103',
-            iconName: 'house'
-          }
-        ]
+        throw new Error('Faiô')
+        // state.environments = [
+        //   {
+        //     id: '1',
+        //     name: 'Casa de Glaube',
+        //     address: 'Rua Anísio Ferreira Aguiar, 25. apto. 103',
+        //     iconName: 'house'
+        //   },
+        //   {
+        //     id: '1',
+        //     name: 'Casa de Glaube',
+        //     address: 'Rua Anísio Ferreira Aguiar, 25. apto. 103',
+        //     iconName: 'house'
+        //   },
+        //   {
+        //     id: '1',
+        //     name: 'Casa de Glaube',
+        //     address: 'Rua Anísio Ferreira Aguiar, 25. apto. 103',
+        //     iconName: 'house'
+        //   }
+        // ]
 
-        if (state.environments.length === 0) {
-          state.isEmpty = true
-        }
+        // if (state.environments.length === 0) {
+        //   state.isEmpty = true
+        // }
 
-        setState({ ...state, isLoading: false })
+        // setState({ ...state, isLoading: false })
 
         // await loadEnvironmentList.load()
       } catch (e: any) {
         setState({ ...state, isLoading: false, error: true })
       }
     })()
-  }, [])
+  }, [state.reload])
 
   return (
     <div
@@ -68,7 +73,7 @@ const EnvironmentList: React.FC<PropsType> = ({ loadEnvironmentList }: PropsType
         {state.error
           ? (
           <div className={Styles.blankPage}>
-            <ErrorPage reloadFunction={() => {}} />
+            <ErrorPage reloadFunction={reload} />
           </div>
             )
           : state.isLoading
