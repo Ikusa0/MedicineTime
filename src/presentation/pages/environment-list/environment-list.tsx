@@ -1,5 +1,4 @@
-import { Header, PageMenu } from '@/presentation/components'
-import EnvironmentCard from '@/presentation/components/environment-card/environment-card'
+import { EnvironmentCardGrid, Header, PageMenu } from '@/presentation/components'
 import { PharmacistSVG } from '@/presentation/images'
 import React from 'react'
 import { MdOutlineAddCircle as AddEnvironmentIcon } from 'react-icons/md'
@@ -27,54 +26,48 @@ const EnvironmentList: React.FC = () => {
     }
   ]
   const isEmpty = false
-  const isLoading = true
+  const isLoading = false
 
   return (
     <div className={`${Styles.environmentList} ${isEmpty ? Styles.empty : ''}`}>
-        <Header title='Ambientes'/>
-        <div className={Styles.content}>
-          {isLoading
+      <Header title="Ambientes" />
+      <div className={Styles.content}>
+        {isLoading
+          ? (
+          <>
+            <EnvironmentCardGrid />
+          </>
+            )
+          : isEmpty
             ? (
-            <>
-              <div className={Styles.environmentCardGrid}>
-                <EnvironmentCard />
-                <EnvironmentCard />
-                <EnvironmentCard />
-                <EnvironmentCard />
+          <div className={Styles.emptyPage}>
+            <div>
+              <h1>
+                Parece que você ainda não tem nenhum <span>ambiente</span>!
+              </h1>
+              <div className={Styles.iconWrapper}>
+                <AddEnvironmentIcon className={Styles.icon} />
+                <span className={Styles.iconLabel}>clique aqui para iniciar</span>
               </div>
-            </>
-              )
-            : isEmpty
-              ? (
-            <div className={Styles.emptyPage}>
-              <div>
-                <h1>
-                  Parece que você ainda não tem nenhum <span>ambiente</span>!
-                </h1>
-                <div className={Styles.iconWrapper}>
-                  <AddEnvironmentIcon className={Styles.icon} />
-                  <span className={Styles.iconLabel}>clique aqui para iniciar</span>
-                </div>
-              </div>
-              <PharmacistSVG className={Styles.banner} />
             </div>
-                )
-              : (
-            <>
-              <PageMenu>
-                <button className={Styles.iconWrapper}>
-                  <AddEnvironmentIcon className={Styles.icon} />
-                  <span className={Styles.iconLabel}>Novo ambiente</span>
-                </button>
-              </PageMenu>
-              <div className={Styles.environmentCardGrid}>
-                {environments.map((environment, index) => {
-                  return <EnvironmentCard {...environment} key={index} />
-                })}
-              </div>
-            </>
-                )}
-        </div>
+            <PharmacistSVG className={Styles.banner} />
+          </div>
+              )
+            : (
+          <>
+            <PageMenu>
+              <button className={Styles.iconWrapper}>
+                <AddEnvironmentIcon className={Styles.icon} />
+                <span className={Styles.iconLabel}>Novo ambiente</span>
+              </button>
+            </PageMenu>
+            <EnvironmentCardGrid
+              className={Styles.environmentCardGrid}
+              environments={environments}
+            />
+          </>
+              )}
+      </div>
     </div>
   )
 }

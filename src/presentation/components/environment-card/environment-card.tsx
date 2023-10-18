@@ -11,32 +11,36 @@ const EnvironmentCard: React.FC<EnvironmentModel | object> = (props: Environment
   if (isEnvironmentModel(props)) {
     const { name, address, iconName } = props
     return (
-      <Card>
-        <div className={Styles.content}>
-          <div className={Styles.iconWrapper}>
-            <EnvironmentIcon iconName={iconName} className={Styles.icon} />
-            <h3>{name}</h3>
+      <li>
+        <Card>
+          <div className={Styles.content}>
+            <div className={Styles.iconWrapper}>
+              <EnvironmentIcon iconName={iconName} className={Styles.icon} />
+              <h3>{name}</h3>
+            </div>
+            <span>{address}</span>
           </div>
-          <span>{address}</span>
-        </div>
-      </Card>
+        </Card>
+      </li>
     )
   }
 
   return (
-    <Card>
-      <div className={`${Styles.content} ${Styles.empty}`}>
-        <div className={Styles.iconWrapper}>
-          <div className={Styles.icon}></div>
-          <div className={Styles.text}></div>
+    <li>
+      <Card>
+        <div className={`${Styles.content} ${Styles.empty}`}>
+          <div className={Styles.iconWrapper}>
+            <div className={Styles.icon}></div>
+            <div className={Styles.text}></div>
+          </div>
+          <div className={Styles.subTextWrapper}>
+            <div className={Styles.subText}></div>
+            <div className={Styles.subText}></div>
+            <div className={Styles.subText}></div>
+          </div>
         </div>
-        <div className={Styles.subTextWrapper}>
-          <div className={Styles.subText}></div>
-          <div className={Styles.subText}></div>
-          <div className={Styles.subText}></div>
-        </div>
-      </div>
-    </Card>
+      </Card>
+    </li>
   )
 }
 
