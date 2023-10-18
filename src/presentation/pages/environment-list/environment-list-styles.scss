@@ -7,7 +7,8 @@
   background-color: $background;
   font-family: Roboto;
 
-  &.empty {
+  &.empty,
+  &.error {
     height: 100svh;
 
     .content {
@@ -20,42 +21,14 @@
     padding: 2rem;
     padding-bottom: 6rem;
 
-    .emptyPage {
-      height: 100%;
-      border-radius: 2rem 2rem 0 0;
+    .blankPage {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 5vw;
+      height: 100%;
+      border-radius: 2rem 2rem 0 0;
       background-color: $white;
-      text-align: center;
       padding: 0 1rem;
-
-      .banner {
-        display: none;
-      }
-
-      .iconWrapper {
-        flex-direction: column;
-        padding: 1rem;
-        user-select: none;
-
-        .icon {
-          width: 3rem;
-          height: 3rem;
-        }
-      }
-
-      h1 {
-        color: $primaryDark;
-        font-size: 1.75rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-
-        span {
-          color: $primary;
-        }
-      }
     }
 
     .iconWrapper {
@@ -92,29 +65,8 @@
     padding-bottom: 0;
 
     .content {
-
       .environmentCardGrid {
         margin-top: 2rem;
-      }
-
-      .emptyPage {
-
-        .banner {
-          display: block;
-        }
-
-        h1 {
-          font-size: 2rem;
-        }
-
-        .iconWrapper .iconLabel {
-          font-size: 1.25rem;
-        }
-
-        .icon {
-          width: 4rem;
-          height: 4rem;
-        }
       }
     }
   }

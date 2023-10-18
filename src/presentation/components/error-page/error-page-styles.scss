@@ -1,0 +1,70 @@
+@import '../../styles/colors.scss';
+
+.errorPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+
+  h1,
+  .circle span,
+  .textWrapper span {
+    color: $primaryLighten;
+  }
+
+  h1 {
+    font-family: Roboto;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .circle {
+    width: 15rem;
+    height: 15rem;
+    border-radius: 50%;
+    background-color: $background;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      font-family: Ribeye;
+      font-size: 12rem;
+      font-weight: 400;
+    }
+  }
+
+  .textWrapper {
+    font-family: Roboto;
+    font-size: 1rem;
+    font-weight: 400;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  @media screen and (min-width: 769px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .circle {
+      width: 23rem;
+      height: 23rem;
+
+      span {
+        font-size: 18rem;
+      }
+    }
+
+    .textWrapper {
+      span {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

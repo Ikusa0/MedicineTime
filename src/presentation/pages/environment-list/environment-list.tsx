@@ -1,59 +1,87 @@
+import { type EnvironmentModel } from '@/domain/models'
+import { type LoadEnvironmentList } from '@/domain/usecases'
 import { EnvironmentCardGrid, Header, PageMenu } from '@/presentation/components'
-import { PharmacistSVG } from '@/presentation/images'
-import React from 'react'
+import ErrorPage from '@/presentation/components/error-page/error-page'
+import React, { useEffect, useState } from 'react'
 import { MdOutlineAddCircle as AddEnvironmentIcon } from 'react-icons/md'
+import { EmptyPage } from './components/'
 import Styles from './environment-list-styles.scss'
 
-const EnvironmentList: React.FC = () => {
-  const environments = [
-    {
-      id: '1',
-      name: 'Casa de Glaube',
-      address: 'Rua Anísio Ferreira Aguiar, 25. apto. 103',
-      iconName: 'house'
-    },
-    {
-      id: '1',
-      name: 'Casa de Glaube',
-      address: 'Rua Anísio Ferreira Aguiar, 25. apto. 103',
-      iconName: 'house'
-    },
-    {
-      id: '1',
-      name: 'Casa de Glaube',
-      address: 'Rua Anísio Ferreira Aguiar, 25. apto. 103',
-      iconName: 'house'
-    }
-  ]
-  const isEmpty = false
-  const isLoading = false
+type PropsType = {
+  loadEnvironmentList?: LoadEnvironmentList
+}
+
+const EnvironmentList: React.FC<PropsType> = ({ loadEnvironmentList }: PropsType) => {
+  const [state, setState] = useState({
+    environments: [] as EnvironmentModel[],
+    isLoading: true,
+    isEmpty: false,
+    error: false
+  })
+
+  useEffect(() => {
+    void (async function () {
+      try {
+        // throw new Error('Faiô')
+        state.environments = [
+          {
+            id: '1',
+            name: 'Casa de Glaube',
+            address: 'Rua Anísio Ferreira Aguiar, 25. apto. 103',
+            iconName: 'house'
+          },
+          {
+            id: '1',
+            name: 'Casa de Glaube',
+            address: 'Rua Anísio Ferreira Aguiar, 25. apto. 103',
+            iconName: 'house'
+          },
+          {
+            id: '1',
+            name: 'Casa de Glaube',
+            address: 'Rua Anísio Ferreira Aguiar, 25. apto. 103',
+            iconName: 'house'
+          }
+        ]
+
+        if (state.environments.length === 0) {
+          state.isEmpty = true
+        }
+
+        setState({ ...state, isLoading: false })
+
+        // await loadEnvironmentList.load()
+      } catch (e: any) {
+        setState({ ...state, isLoading: false, error: true })
+      }
+    })()
+  }, [])
 
   return (
-    <div className={`${Styles.environmentList} ${isEmpty ? Styles.empty : ''}`}>
+    <div
+      className={`${Styles.environmentList} ${state.isEmpty ? Styles.empty : ''} ${
+        state.error ? Styles.error : ''
+      }`}
+    >
       <Header title="Ambientes" />
       <div className={Styles.content}>
-        {isLoading
+        {state.error
           ? (
-          <>
-            <EnvironmentCardGrid />
-          </>
-            )
-          : isEmpty
-            ? (
-          <div className={Styles.emptyPage}>
-            <div>
-              <h1>
-                Parece que você ainda não tem nenhum <span>ambiente</span>!
-              </h1>
-              <div className={Styles.iconWrapper}>
-                <AddEnvironmentIcon className={Styles.icon} />
-                <span className={Styles.iconLabel}>clique aqui para iniciar</span>
-              </div>
-            </div>
-            <PharmacistSVG className={Styles.banner} />
+          <div className={Styles.blankPage}>
+            <ErrorPage reloadFunction={() => {}} />
           </div>
+            )
+          : state.isLoading
+            ? (
+          <EnvironmentCardGrid />
               )
-            : (
+            : state.isEmpty
+              ? (
+          <div className={Styles.blankPage}>
+            <EmptyPage />
+          </div>
+                )
+              : (
           <>
             <PageMenu>
               <button className={Styles.iconWrapper}>
@@ -63,10 +91,10 @@ const EnvironmentList: React.FC = () => {
             </PageMenu>
             <EnvironmentCardGrid
               className={Styles.environmentCardGrid}
-              environments={environments}
+              environments={state.environments}
             />
           </>
-              )}
+                )}
       </div>
     </div>
   )

@@ -1,0 +1,75 @@
+@import '../../../../styles/colors.scss';
+
+.emptyPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5vw;
+  text-align: center;
+
+  .banner {
+    display: none;
+  }
+
+  .iconWrapper {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
+    user-select: none;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $lightGray;
+      border-radius: 0.5rem;
+      opacity: initial;
+    }
+
+    .icon {
+      width: 3rem;
+      height: 3rem;
+
+      * {
+        color: $primary;
+      }
+    }
+
+    .iconLabel {
+      color: $primary;
+
+      font-size: 1rem;
+      font-weight: 700;
+    }
+  }
+
+  h1 {
+    color: $primaryDark;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+
+    span {
+      color: $primary;
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    .banner {
+      display: block;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .iconWrapper .iconLabel {
+      font-size: 1.25rem;
+    }
+
+    .icon {
+      width: 4rem;
+      height: 4rem;
+    }
+  }
+}
