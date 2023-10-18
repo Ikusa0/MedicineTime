@@ -8,7 +8,7 @@ import { EmptyPage } from './components/'
 import Styles from './environment-list-styles.scss'
 
 type PropsType = {
-  loadEnvironmentList?: LoadEnvironmentList
+  loadEnvironmentList: LoadEnvironmentList
 }
 
 const EnvironmentList: React.FC<PropsType> = ({ loadEnvironmentList }: PropsType) => {
@@ -27,35 +27,13 @@ const EnvironmentList: React.FC<PropsType> = ({ loadEnvironmentList }: PropsType
   useEffect(() => {
     void (async function () {
       try {
-        throw new Error('Faiô')
-        // state.environments = [
-        //   {
-        //     id: '1',
-        //     name: 'Casa de Glaube',
-        //     address: 'Rua Anísio Ferreira Aguiar, 25. apto. 103',
-        //     iconName: 'house'
-        //   },
-        //   {
-        //     id: '1',
-        //     name: 'Casa de Glaube',
-        //     address: 'Rua Anísio Ferreira Aguiar, 25. apto. 103',
-        //     iconName: 'house'
-        //   },
-        //   {
-        //     id: '1',
-        //     name: 'Casa de Glaube',
-        //     address: 'Rua Anísio Ferreira Aguiar, 25. apto. 103',
-        //     iconName: 'house'
-        //   }
-        // ]
+        state.environments = await loadEnvironmentList.load()
 
-        // if (state.environments.length === 0) {
-        //   state.isEmpty = true
-        // }
+        if (state.environments.length === 0) {
+          state.isEmpty = true
+        }
 
-        // setState({ ...state, isLoading: false })
-
-        // await loadEnvironmentList.load()
+        setState({ ...state, isLoading: false })
       } catch (e: any) {
         setState({ ...state, isLoading: false, error: true })
       }
