@@ -1,5 +1,5 @@
 import React from 'react'
-import UnfilledButton from '../button/unfilled-button'
+import FilledButton from '../button/filled-button'
 import Styles from './error-page-styles.scss'
 
 type PropsType = {
@@ -13,7 +13,9 @@ const ErrorPage: React.FC<PropsType> = ({ reloadFunction }: PropsType) => {
       <div className={Styles.circle}>
         <span>!</span>
       </div>
-      <UnfilledButton onClick={reloadFunction}>Recarregar</UnfilledButton>
+      <div className={Styles.buttonWrapper}>
+        <FilledButton onClick={reloadFunction}>Tentar novamente</FilledButton>
+      </div>
       <div className={Styles.textWrapper}>
         <span>Parece que tivemos um problema com sua requisição.</span>
         <span>Por favor, tente novamente!</span>

@@ -127,17 +127,21 @@ const Register: React.FC<Props> = ({ validation, addAccount }: Props) => {
                   <LockIcon size={24} />
                 </IconLabeledInput>
                 <div className={Styles.submitWrapper}>
-                  <FilledButton disabled={state.loading} type="submit">
-                    Cadastrar
-                  </FilledButton>
+                  <div className={Styles.buttonWrapper}>
+                    <FilledButton disabled={state.loading} type="submit">
+                      Cadastrar
+                    </FilledButton>
+                  </div>
                 </div>
                 <AlternativeLogin disabled={state.loading} />
                 <legend>
                   <span>Já possui conta?</span>
                   <Link to="/login">
-                    <UnfilledButton disabled={state.loading} type="button">
-                      Entrar
-                    </UnfilledButton>
+                    <div className={Styles.buttonWrapper}>
+                      <UnfilledButton disabled={state.loading} type="button">
+                        Entrar
+                      </UnfilledButton>
+                    </div>
                   </Link>
                 </legend>
               </fieldset>

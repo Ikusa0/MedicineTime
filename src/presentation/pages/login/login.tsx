@@ -98,17 +98,21 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
                   <Link className={state.loading ? Styles.disabledAnchor : ''} to="/recover">
                     <span>Esqueceu a senha?</span>
                   </Link>
-                  <FilledButton disabled={state.loading} type="submit">
-                    Entrar
-                  </FilledButton>
+                  <div className={Styles.buttonWrapper}>
+                    <FilledButton disabled={state.loading} type="submit">
+                      Entrar
+                    </FilledButton>
+                  </div>
                 </div>
                 <AlternativeLogin disabled={state.loading} />
                 <legend>
                   <span>Ainda não cadastrado?</span>
                   <Link to="/register">
-                    <UnfilledButton disabled={state.loading} type="button">
-                      Criar conta
-                    </UnfilledButton>
+                    <div className={Styles.buttonWrapper}>
+                      <UnfilledButton disabled={state.loading} type="button">
+                        Criar conta
+                      </UnfilledButton>
+                    </div>
                   </Link>
                 </legend>
               </fieldset>

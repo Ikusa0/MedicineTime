@@ -2,6 +2,10 @@
 
 .register {
   background: $backgroundGradient;
+  
+  .buttonWrapper {
+    width: 9rem;
+  }
 
   .content {
     display: flex;
