@@ -2,10 +2,6 @@
 
 .register {
   background: $backgroundGradient;
-  
-  .buttonWrapper {
-    width: 9rem;
-  }
 
   .content {
     display: flex;
@@ -17,7 +13,7 @@
     width: 100%;
     margin: auto;
     background-color: $background;
-    padding: 0 2rem;
+    padding: 2rem;
     box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.25);
   }
 
@@ -26,53 +22,71 @@
     text-decoration-color: $gray;
   }
 
-  .form {
-    margin-top: 4rem;
+  .logoWrapper {
+    width: 100%;
+  }
 
-    fieldset {
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding-top: 2rem;
+
+    .buttonWrapper {
+      width: 9rem;
+    }
+
+    .formWrapper {
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
+      gap: 1rem;
+
+      .inputWrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+      }
     }
 
-    legend {
+    .title {
+      width: 100%;
+      font-size: 1.2rem;
+    }
+
+    footer {
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-
-      margin-bottom: 2rem;
-    }
-
-    legend:nth-of-type(2) {
-      margin-bottom: 0;
-      margin-top: 3rem;
-    }
-
-    .submitWrapper {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      span {
-        color: $gray;
-      }
     }
   }
 
   @media screen and (min-width: 769px) {
+    form {
+      gap: 2rem;
+      padding-top: 2.25rem;
+
+      .formWrapper {
+        gap: 1.25rem;
+
+        .inputWrapper {
+          gap: 0.75rem;
+        }
+      }
+
+      footer {
+        font-size: 1.2rem;
+      }
+    }
+
     .content {
       width: fit-content;
-      padding: 0 5rem;
-    }
-
-    .form legend {
-      font-size: 1.2rem;
-    }
-
-    .submitWrapper span {
-      font-size: 1.1rem;
+      padding: 3rem 5rem;
     }
   }
 }

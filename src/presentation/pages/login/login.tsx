@@ -69,13 +69,17 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
     <div className={Styles.login}>
       {state.loading && <LoadingBar />}
       <div className={Styles.content}>
-        <LogoBig />
+        <div className={Styles.logoWrapper}>
+          <LogoBig />
+        </div>
         <FormContext.Provider value={{ state, setState }}>
-          <section className={Styles.form}>
-            {state.warning && <ErrorMessage text={state.error} />}
-            <form onSubmit={handleSubmit}>
-              <fieldset>
-                <legend>Faça login na sua conta</legend>
+          <form onSubmit={handleSubmit}>
+            <div className={Styles.formWrapper}>
+              <div className={Styles.errorWrapper}>
+                {state.warning && <ErrorMessage text={state.error} />}
+              </div>
+              <span className={Styles.title}>Faça login na sua conta</span>
+              <div className={Styles.inputWrapper}>
                 <IconLabeledInput
                   type="email"
                   name="email"
@@ -94,30 +98,32 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
                 >
                   <LockIcon size={24} />
                 </IconLabeledInput>
-                <div className={Styles.submitWrapper}>
-                  <Link className={state.loading ? Styles.disabledAnchor : ''} to="/recover">
-                    <span>Esqueceu a senha?</span>
-                  </Link>
-                  <div className={Styles.buttonWrapper}>
-                    <FilledButton disabled={state.loading} type="submit">
-                      Entrar
-                    </FilledButton>
-                  </div>
+              </div>
+              <div className={Styles.submitWrapper}>
+                <Link className={state.loading ? Styles.disabledAnchor : ''} to="/recover">
+                  <span>Esqueceu a senha?</span>
+                </Link>
+                <div className={Styles.buttonWrapper}>
+                  <FilledButton disabled={state.loading} type="submit">
+                    Entrar
+                  </FilledButton>
                 </div>
-                <AlternativeLogin disabled={state.loading} />
-                <legend>
-                  <span>Ainda não cadastrado?</span>
-                  <Link to="/register">
-                    <div className={Styles.buttonWrapper}>
-                      <UnfilledButton disabled={state.loading} type="button">
-                        Criar conta
-                      </UnfilledButton>
-                    </div>
-                  </Link>
-                </legend>
-              </fieldset>
-            </form>
-          </section>
+              </div>
+            </div>
+            <div className={Styles.alternativeLoginWrapper}>
+              <AlternativeLogin disabled={state.loading} />
+            </div>
+            <footer>
+              <span>Ainda não cadastrado?</span>
+              <Link to="/register">
+                <div className={Styles.buttonWrapper}>
+                  <UnfilledButton disabled={state.loading} type="button">
+                    Criar conta
+                  </UnfilledButton>
+                </div>
+              </Link>
+            </footer>
+          </form>
         </FormContext.Provider>
       </div>
     </div>
