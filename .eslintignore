@@ -134,3 +134,4 @@ webpack.*.js
 jest.config.js
 *.scss
 *.svg
+index.js

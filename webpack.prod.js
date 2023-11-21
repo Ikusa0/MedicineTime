@@ -45,7 +45,7 @@ module.exports = merge(common, {
     'react-dom': 'ReactDOM'
   },
   plugins: [
-    new Dotenv({ safe: true }),
+    new Dotenv({ systemvars: true }),
     new HTMLWebpackPlugin({ template: './template.prod.html' }),
     new MiniCssExtractPlugin({ filename: 'bundle-css-[contenthash].css' })
   ]
