@@ -130,7 +130,7 @@ dist
 .pnp.*
 
 public
-webpack.config.js
+webpack.*.js
 jest.config.js
 *.scss
 *.svg
