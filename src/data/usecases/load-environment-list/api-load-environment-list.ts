@@ -1,5 +1,5 @@
 import { HttpStatusCode, type HttpGetClient } from '@/data/protocols/http'
-import { UnexpectedError } from '@/domain/errors'
+import { AccessDeniedError, UnexpectedError } from '@/domain/errors'
 import { type EnvironmentModel } from '@/domain/models'
 import { type LoadEnvironmentList } from '@/domain/usecases'
 
@@ -17,6 +17,8 @@ export class APILoadEnvironmentList implements LoadEnvironmentList {
         return httpResponse.body ?? []
       case HttpStatusCode.noContent:
         return []
+      case HttpStatusCode.forbidden:
+        throw new AccessDeniedError()
       default:
         throw new UnexpectedError()
     }
