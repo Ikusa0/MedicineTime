@@ -1,6 +1,6 @@
 {
-  "name": "medicine-time",
-  "version": "1.2.0",
+  "name": "medicine-time-front",
+  "version": "1.3.0",
   "description": "React application to track medicines.",
   "author": "Ayrton Porto",
   "license": "ISC",
