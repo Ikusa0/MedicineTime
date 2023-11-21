@@ -2,6 +2,7 @@ import { type EnvironmentModel } from '@/domain/models'
 import { type LoadEnvironmentList } from '@/domain/usecases'
 import { EnvironmentCardGrid, Header, PageMenu } from '@/presentation/components'
 import ErrorPage from '@/presentation/components/error-page/error-page'
+import { useErrorHandler } from '@/presentation/hooks/use-error-handler'
 import React, { useEffect, useState } from 'react'
 import { MdOutlineAddCircle as AddEnvironmentIcon } from 'react-icons/md'
 import { EmptyPage } from './components/'
@@ -19,6 +20,9 @@ const EnvironmentList: React.FC<PropsType> = ({ loadEnvironmentList }: PropsType
     error: false,
     reload: false
   })
+  const handleError = useErrorHandler((): void => {
+    setState({ ...state, isLoading: false, error: true })
+  })
 
   const reload = (): void => {
     setState({ ...state, error: false, reload: !state.reload, isLoading: true })
@@ -34,8 +38,8 @@ const EnvironmentList: React.FC<PropsType> = ({ loadEnvironmentList }: PropsType
         }
 
         setState({ ...state, isLoading: false })
-      } catch (e: any) {
-        setState({ ...state, isLoading: false, error: true })
+      } catch (error: any) {
+        handleError(error)
       }
     })()
   }, [state.reload])
