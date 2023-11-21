@@ -1,17 +1,10 @@
-import { AuthContext } from '@/presentation/contexts'
-import React, { useContext } from 'react'
+import { useLogoff } from '@/presentation/hooks/use-logoff'
+import React from 'react'
 import { BiSolidExit as ExitIcon } from 'react-icons/bi'
-import { useNavigate } from 'react-router-dom'
 import Styles from './dropdown-list-styles.scss'
 
 const DropdownList: React.FC = () => {
-  const { updateCurrentAccount } = useContext(AuthContext)!
-  const navigate = useNavigate()
-
-  const logoff = (): void => {
-    updateCurrentAccount()
-    navigate('/login')
-  }
+  const logoff = useLogoff()
 
   return (
     <div className={Styles.dropdownList}>
