@@ -3,6 +3,7 @@
 const Dotenv = require('dotenv-webpack')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const { merge } = require('webpack-merge')
 const common = require('./webpack.common')
 
@@ -48,6 +49,9 @@ module.exports = merge(common, {
   plugins: [
     new Dotenv({ systemvars: true }),
     new HTMLWebpackPlugin({ template: './template.prod.html' }),
-    new MiniCssExtractPlugin({ filename: 'bundle-css-[contenthash].css' })
+    new MiniCssExtractPlugin({ filename: 'bundle-css-[contenthash].css' }),
+    new FaviconsWebpackPlugin({
+      logo: './public/favicon.svg'
+    })
   ]
 })
